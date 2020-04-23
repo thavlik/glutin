@@ -60,6 +60,14 @@ impl Context {
     }
 
     #[inline]
+    pub fn new_raw_hwnd(
+        hwnd: *mut std::ffi::c_void,
+        pf_reqs: &PixelFormatRequirements,
+        gl_attr: &GlAttributes<&Self>,
+    ) -> Result<Self, CreationError> {
+        Self::new_raw_context(hwnd as HWND, pf_reqs, gl_attr)
+    }
+
     pub fn new_raw_context(
         hwnd: HWND,
         pf_reqs: &PixelFormatRequirements,
